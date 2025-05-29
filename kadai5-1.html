@@ -13,18 +13,22 @@
     <div id="result">結果はここに表示</div>
     <script>
         async function zip_api(myForm) {
+            //URIをendpointに格納する
             const endpoint = "https://zipcloud.ibsnet.co.jp/api/search";
            
             // ここにコードを書く
             const aRes = await fetch(endpoint+"?zipcode="+myForm.zipcode.value);
+            //json形式でデータを取り出す
             const data = await aRes.json();
 
+            //連想配列(json形式)で格納する
             let json = new Object();
             json = data.results[0];
         
             // zipcloudのAPI呼び出して結果を表示する
             const gragh = document.getElementById("result");
             if (data.status === 200 ) {
+                //リクエストが上手くできた場合はhtmlに表示させる
                 gragh.innerHTML = "<p></p>"+
                                   "<p>都道府県："+json.address1+"</p>"+
                                   "<p>市町村："+json.address2+"</p>"+
