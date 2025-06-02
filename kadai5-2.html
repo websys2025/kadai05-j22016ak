@@ -4,9 +4,9 @@
     <title>演習課題5-2：外部APIの呼び出しテスト</title>
 </head>
 <body>
-    <h1 id="msg">何かのAPI</h1>
+    <h1 id="msg">怪獣を生み出すAPI</h1>
     <form name="apiform"><p>
-        何かのフォーム：<input type="text" name="form_data">
+        怪獣の名前を入力：<input type="text" name="form_data">
         <button type="button" id="btn1" onclick="some_api(this.form)">実行</button>
     </p></form>
     
@@ -14,7 +14,12 @@
     <script>
         async function some_api(myForm) {
             // ここにコードを書く
-            document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
+            const endpoint = "https://robohash.org/";
+            const data= await fetch(endpoint+myForm.form_data.value);
+            console.log(data);
+
+            document.getElementById("result").innerHTML = "<h2>僕は「"+myForm.form_data.value+"」です</h2>";
+            document.getElementById("result").innerHTML += "<img src="+data.url+"><br />";
             document.apiform.reset();
         }
     </script>
