@@ -18,8 +18,9 @@
             const data= await fetch(endpoint+myForm.form_data.value);
             console.log(data);
 
-            document.getElementById("result").innerHTML = "<h2>僕は「"+myForm.form_data.value+"」です</h2>";
+            document.getElementById("result").innerHTML = "<p>  </p>";
             document.getElementById("result").innerHTML += "<img src="+data.url+"><br />";
+             document.getElementById("result").innerHTML += "<h3>   ワタシハ、 「"+myForm.form_data.value+"」ダ。</h3>";
             document.apiform.reset();
         }
     </script>
